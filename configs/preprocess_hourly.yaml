@@ -1,0 +1,19 @@
+#=================================================================================================== 
+# MLdpit preprocessing: yearly hourly-precipitation NetCDF -> Zarr stores
+#
+# Input requirements (see docs/preprocessing.md):
+#   - variable named TOT_PREC
+#   - hourly totals in kg m-2 (not a rate in kg m-2 s-1)
+#   - timestamps at interval centres (HH:30)
+#   - one file per calendar year
+#
+# Available template fields: {year}, {next_year}, {experiment}.
+# A field may appear more than once, e.g. "..._{year}0101-{year}1231.nc".
+#===================================================================================================
+kind: hourly
+input_dir: /data/netcdf/hourly 
+output_dir: /data/zarr/hourly
+years: "2000"    # e.g. "1960-2024" or "2019,2020"
+input_template: "TOT_PREC_10min_{year}010100-{next_year}010100.ncz"
+output_template: "hourly_{year}_{experiment}.zarr"
+experiment: "my_experiment"

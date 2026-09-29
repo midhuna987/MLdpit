@@ -1,0 +1,53 @@
+# Model weights and data: distributed via Zenodo, never through git
+*.ckpt
+*.pt
+*.pth
+*.nc
+*.nc4
+*.ncz
+*.zarr/
+*.zarr
+
+# Local Levante configs with real paths
+configs/local/
+
+# Outputs and logs
+output/
+outputs/
+logs/
+checkpoints/
+csv_logs/
+lightning_logs/
+wandb/
+slurm-*.out
+*.o[0-9]*
+*.err
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# Environments
+venv/
+.venv/
+lvenv/
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Levante virtual environment
+.mldpit/
+
+# Withheld pending UDAG permission
+sample_data/
+
+# Local test output
+sample_output/

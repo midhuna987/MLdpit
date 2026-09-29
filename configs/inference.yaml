@@ -1,0 +1,52 @@
+# MLdpit inference configuration: hourly precipitation -> 10-minute
+# precipitation with the pretrained weights.
+#
+# Command-line flags override any value here, e.g.
+#   mldpit-infer --config configs/inference.yaml --period-end 2020-01-03
+
+# --- model -----------------------------------------------------------------
+# Pretrained weights, downloaded from Zenodo as described in the README.
+checkpoint: weights/mldpit_weights.ckpt
+
+# --- input -----------------------------------------------------------------
+# Hourly Zarr stores written by mldpit-preprocess. input_template and
+# experiment must match output_template and experiment in
+# configs/preprocess_hourly.yaml.
+
+input_dir: data/zarr/hourly
+input_template: "hourly_{year}_{experiment}.zarr"
+experiment: "my_experiment"
+
+source_var: TOT_PREC
+
+# --- period ----------------------------------------------------------------
+# period_end is EXCLUSIVE. Each prediction needs an hour and the hour after
+# it, so n input hours give (n - 1) x 6 output fields. Set period_end one day
+# past the last day you want.
+
+period_start: "2020-01-01"
+period_end: "2020-02-01"
+
+# --- output ----------------------------------------------------------------
+# Format follows the extension: .nc gives NetCDF, .zarr gives Zarr.
+# An existing file at this path is overwritten.
+
+output: output/mldpit_10min_2020-01.nc
+
+# Convention for the time_bnds variable (precipitation values are identical
+# under both):
+#   legacy  - [t - 10 min, t]; reproduces the output analysed in the paper
+#   centred - [t - 5 min, t + 5 min]; matches the interval-centre timestamps
+
+time_bounds: legacy
+
+# --- hardware --------------------------------------------------------------
+# batch_size 24 was used on a single NVIDIA A100. Reduce it if the GPU runs
+# out of memory; it does not affect the results.
+batch_size: 24
+num_workers: 8
+accelerator: auto             # gpu when available, otherwise cpu
+devices: 1
+
+
+

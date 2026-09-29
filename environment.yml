@@ -1,0 +1,31 @@
+# MLdpit -- conda environment
+#
+# For systems where pip cannot resolve or build everything itself, which
+# includes most HPC installations. The pip section carries the exact versions
+# the published results were produced with; see requirements.txt for the same
+# list with commentary.
+#
+#     conda env create -f environment.yml
+#     conda activate mldpit
+#     python -m pip install -e . --no-deps
+#
+name: mldpit
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - torch==2.7.1
+      - pytorch-lightning==2.5.2
+      - lightning-utilities==0.14.3
+      - torchmetrics==1.7.4
+      - numpy==2.1.3
+      - pandas==2.3.1
+      - xarray==2025.7.1
+      - zarr==3.1.0
+      - numcodecs==0.15.1
+      - dask==2025.7.0
+      - netCDF4==1.7.2
+      - cftime==1.6.4.post1
+      - PyYAML==6.0.2

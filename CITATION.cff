@@ -1,0 +1,95 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software itself and the paper describing it."
+title: "MLdpit: machine learning downscaled precipitation in time"
+abstract: >-
+  MLdpit performs temporal downscaling of precipitation, converting hourly
+  fields into 10-minute fields with a four-level U-Net. A softmax over the six
+  output channels yields sub-hourly fractions that are multiplied by the hourly
+  total, so the six 10-minute fields sum to the hourly field from which they
+  were derived, to within float32 rounding. The released model was trained on
+  ICON simulations over a 501 x 501 grid at ~3 km resolution.
+type: software
+version: 0.9.0
+date-released: 2026-09-29
+license: MIT
+repository-code: "https://github.com/midhuna987/MLdpit"
+url: "https://github.com/midhuna987/MLdpit"
+doi: 10.5281/zenodo.FIXME-CONCEPT
+contact:
+  - given-names: Midhuna
+    family-names: Thayyil Mandodi
+    email: midhuna.thayyil@hereon.de
+    affiliation: Helmholtz-Zentrum Hereon
+authors:
+  - given-names: Midhuna
+    family-names: Thayyil Mandodi
+    email: midhuna.thayyil@hereon.de
+    orcid: "https://orcid.org/0000-0003-0984-4739"
+    affiliation: Helmholtz-Zentrum Hereon
+  - given-names: Caroline
+    family-names: Arnold
+    orcid: "https://orcid.org/0000-0002-9458-1517"
+    affiliation: "Helmholtz-Zentrum Hereon; Helmholtz AI"
+  - given-names: Paul
+    family-names: Keil
+    orcid: "https://orcid.org/0000-0002-6502-4148"
+    affiliation: "Helmholtz-Zentrum Hereon; Helmholtz AI"
+  - given-names: David S.
+    family-names: Greenberg
+    orcid: "https://orcid.org/0000-0002-8515-0459"
+    affiliation: Helmholtz-Zentrum Hereon
+  - given-names: Beate
+    family-names: Geyer
+    orcid: "https://orcid.org/0000-0001-8017-3136"
+    affiliation: Helmholtz-Zentrum Hereon
+  - given-names: Stefan
+    family-names: Hagemann
+    orcid: "https://orcid.org/0000-0001-5444-2945"
+    affiliation: Helmholtz-Zentrum Hereon
+keywords:
+  - precipitation
+  - temporal downscaling
+  - deep learning
+  - U-Net
+  - mass conservation
+  - ICON
+  - climate model output
+  - convection-permitting simulation
+preferred-citation:
+  type: article
+  title: "ML-based temporal downscaling of hourly climate model precipitation"
+  authors:
+    - given-names: Midhuna
+      family-names: Thayyil Mandodi
+    - given-names: Caroline
+      family-names: Arnold
+    - given-names: Paul
+      family-names: Keil
+    - given-names: David S.
+      family-names: Greenberg
+    - given-names: Beate
+      family-names: Geyer
+    - given-names: Stefan
+      family-names: Hagemann
+  journal: "FIXME journal"
+  year: 2026
+  doi: 10.0000/FIXME-PAPER
+references:
+  - type: data
+    title: "MLdpit pretrained model weights"
+    authors:
+      - given-names: Midhuna
+        family-names: Thayyil Mandodi
+      - given-names: Caroline
+        family-names: Arnold
+      - given-names: Paul
+        family-names: Keil
+      - given-names: David S.
+        family-names: Greenberg
+      - given-names: Beate
+        family-names: Geyer
+      - given-names: Stefan
+        family-names: Hagemann
+    year: 2026
+    license: CC-BY-4.0
+    doi: 10.5281/zenodo.FIXME-WEIGHTS

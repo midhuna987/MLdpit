@@ -1,0 +1,20 @@
+# MLdpit preprocessing: yearly 10-minute precipitation NetCDF -> Zarr stores
+# used as training targets.
+#
+# Needed for training only.  so this file records the configuration used
+# for the released weights. Inference does not need it.
+#
+# The hourly training inputs are the hour-sums of these same 10-minute
+# fields.
+#
+# output_template and experiment must match target_template and experiment
+# in configs/train.yaml.
+
+
+kind: subhourly
+input_dir: /data/netcdf/10mnts
+output_dir: /data/zarr/10mnts
+years: "2020"
+input_template: "TOT_PREC_10min_{year}010100-{next_year}010100.ncz"
+output_template: "train_target_{year}_{experiment}_10mnts.zarr"
+experiment: "IAEVALH01"

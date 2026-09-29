@@ -1,0 +1,45 @@
+# Training configuration. Every path lives here; no path is hardcoded in the
+# package. 
+#These are the settings used to train the released weights. Only the paths
+# below need adapting to your system; changing the hyperparameters trains a
+# different model from the one published.
+
+#Command-line flags override any value here, e.g.
+#   mldpit-train --config configs/train.yaml --epochs 1
+
+# --- data ------------------------------------------------------------------
+source_dir: /data/zarr/hourly
+target_dir: /data/zarr/10mnts
+
+# Set these to match the filenames your archive actually uses.
+source_template: "train_source_{year}_{experiment}_1hr.zarr"
+target_template: "train_target_{year}_{experiment}_10mnts.zarr"
+experiment: "IAEVALH01"
+
+train_years: "1960-2007,2012-2017"
+val_years: "2018-2019"
+exclude_hours: ["2000-01-01T00"]
+
+source_var: TOT_PREC
+target_var: TOT_PREC
+
+# --- optimisation ----------------------------------------------------------
+epochs: 20
+batch_size: 8
+learning_rate: 0.0001
+optimizer: adamw
+accumulate_grad_batches: 2
+early_stopping_patience: 5
+
+# --- hardware --------------------------------------------------------------
+num_nodes: 12
+devices: 4
+num_workers: 4
+precision: "32-true"
+strategy: ddp
+accelerator: auto       # gpu when available, otherwise cpu
+
+# --- output ----------------------------------------------------------------
+checkpoint_dir: checkpoints
+log_dir: logs
+wandb_project: null    # set a project name to enable Weights & Biases

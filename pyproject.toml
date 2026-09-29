@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mldpit"
+version = "0.9.0"
+description = "Deep learning temporal downscaling of precipitation from hourly to 10-minute resolution"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Midhuna Thayyil Mandodi", email = "midhuna.thayyil@hereon.de" },
+]
+keywords = [
+    "precipitation", "downscaling", "deep learning", "U-Net",
+    "ICON", "climate", "CORDEX",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Installs everything needed to run inference with the
+# pretrained weights. Training and preprocessing pull a little more.
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "xarray>=2024.1.0",
+    "zarr>=2.16",
+    "dask>=2024.1.0",
+    "torch>=2.0",
+    "pytorch-lightning>=2.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+preprocess = ["netCDF4>=1.6"]
+train = ["wandb>=0.16"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+all = ["mldpit[preprocess,train,dev]"]
+
+[project.scripts]
+mldpit-preprocess = "mldpit.preprocess:main"
+mldpit-train = "mldpit.train:main"
+mldpit-infer = "mldpit.inference:main"
+
+[project.urls]
+Homepage = "https://github.com/midhuna987/MLdpit"
+Repository = "https://github.com/midhuna987/MLdpit"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
